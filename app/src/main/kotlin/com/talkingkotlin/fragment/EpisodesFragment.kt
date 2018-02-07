@@ -14,6 +14,7 @@ import android.support.v7.widget.SimpleItemAnimator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.os.bundleOf
 import com.talkingkotlin.R
 import com.talkingkotlin.adapter.EpisodesAdapter
 import com.talkingkotlin.model.rss.Item
@@ -33,15 +34,13 @@ class EpisodesFragment : Fragment() {
         var CHILD_LOADER = 1
         var CHILD_EMPTY_VIEW = 2
 
-        val EXTRA_EPISODE_TITLE = "EXTRA_EPISODE_TITLE"
+        const val EXTRA_EPISODE_TITLE = "EXTRA_EPISODE_TITLE"
 
         fun newInstance(episodeTitle: String?): Fragment {
 
-            val fragment = EpisodesFragment()
-            val bundle = Bundle()
-            bundle.putString(EXTRA_EPISODE_TITLE, episodeTitle)
-            fragment.arguments = bundle
-            return fragment
+            return EpisodesFragment().apply {
+                arguments = bundleOf(EXTRA_EPISODE_TITLE to episodeTitle)
+            }
         }
     }
 
